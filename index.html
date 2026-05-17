@@ -9,380 +9,130 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: #f4ecd8;
-    color: #1a2438;
-    margin: 0;
-    padding: 0;
-    font-size: 20px;
-    line-height: 1.5;
-  }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f4ecd8; color: #1a2438; margin: 0; padding: 0; font-size: 20px; line-height: 1.5; }
   .container { max-width: 900px; margin: 0 auto; padding: 24px 20px 60px; }
-
-  header {
-    text-align: center;
-    padding: 32px 20px 28px;
-    margin-bottom: 28px;
-    background: #1a2438;
-    color: #f4ecd8;
-    border-radius: 0 0 16px 16px;
-    margin: -1px -20px 28px;
-    box-shadow: 0 4px 12px rgba(26, 36, 56, 0.15);
-  }
-  h1 {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 44px;
-    margin: 0 0 6px;
-    color: #d4af37;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-  }
-  .subtitle {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 19px;
-    color: #f4ecd8;
-    margin: 0;
-    font-style: italic;
-    opacity: 0.85;
-  }
-  .ornament {
-    width: 60px;
-    height: 2px;
-    background: #d4af37;
-    margin: 14px auto;
-    position: relative;
-  }
-  .ornament::before, .ornament::after {
-    content: '';
-    position: absolute;
-    top: -3px;
-    width: 8px;
-    height: 8px;
-    background: #d4af37;
-    border-radius: 50%;
-  }
+  header { text-align: center; padding: 32px 20px 28px; background: #1a2438; color: #f4ecd8; margin: -1px -20px 28px; border-radius: 0 0 16px 16px; box-shadow: 0 4px 12px rgba(26, 36, 56, 0.15); }
+  h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 44px; margin: 0 0 6px; color: #d4af37; font-weight: 700; letter-spacing: 0.5px; }
+  .subtitle { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 19px; color: #f4ecd8; margin: 0; font-style: italic; opacity: 0.85; }
+  .ornament { width: 60px; height: 2px; background: #d4af37; margin: 14px auto; position: relative; }
+  .ornament::before, .ornament::after { content: ''; position: absolute; top: -3px; width: 8px; height: 8px; background: #d4af37; border-radius: 50%; }
   .ornament::before { left: -14px; }
   .ornament::after { right: -14px; }
-
-  .user-status {
-    margin-top: 14px;
-    font-size: 16px;
-    color: #c8b58a;
-  }
+  .user-status { margin-top: 14px; font-size: 16px; color: #c8b58a; }
   .user-status.logado { color: #d4af37; font-weight: 600; }
-  .btn-login-link {
-    background: none; border: none; color: #c8b58a; font-size: 16px;
-    cursor: pointer; text-decoration: underline; font-family: inherit;
-    padding: 4px 8px;
-  }
+  .btn-login-link { background: none; border: none; color: #c8b58a; font-size: 16px; cursor: pointer; text-decoration: underline; font-family: inherit; padding: 4px 8px; }
   .btn-login-link:hover { color: #d4af37; }
 
-  .tabs {
-    display: flex; gap: 8px; margin-bottom: 24px;
-    flex-wrap: wrap; justify-content: center;
-  }
-  .tab {
-    background: #fff; border: 2px solid #1a2438; color: #1a2438;
-    padding: 16px 22px; font-size: 19px; font-weight: 600;
-    border-radius: 10px; cursor: pointer; font-family: inherit;
-    min-height: 60px; flex: 1; min-width: 140px;
-    transition: all 0.15s;
-  }
-  .tab.active {
-    background: #1a2438; color: #d4af37;
-    border-color: #1a2438;
-  }
-  .tab:hover:not(.active) {
-    background: #e8dec2;
-    border-color: #1a2438;
-  }
+  .tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; justify-content: center; }
+  .tab { background: #fff; border: 2px solid #1a2438; color: #1a2438; padding: 16px 22px; font-size: 19px; font-weight: 600; border-radius: 10px; cursor: pointer; font-family: inherit; min-height: 60px; flex: 1; min-width: 140px; transition: all 0.15s; }
+  .tab.active { background: #1a2438; color: #d4af37; }
+  .tab:hover:not(.active) { background: #e8dec2; }
   .tab.somente-logado { display: none; }
   body.logado .tab.somente-logado { display: block; }
 
   .panel { display: none; }
   .panel.active { display: block; }
 
-  .big-stat {
-    background: #fff;
-    border: 2px solid #1a2438;
-    border-radius: 16px;
-    padding: 28px 24px;
-    text-align: center;
-    margin-bottom: 20px;
-    position: relative;
-  }
-  .big-stat::before {
-    content: '';
-    position: absolute;
-    top: 8px; left: 8px; right: 8px; bottom: 8px;
-    border: 1px solid #d4af37;
-    border-radius: 10px;
-    pointer-events: none;
-  }
-  .big-stat .number {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 60px;
-    font-weight: 700;
-    color: #1a2438;
-    line-height: 1;
-  }
-  .big-stat .label {
-    font-size: 18px;
-    color: #5a6478;
-    margin-top: 8px;
-    font-style: italic;
-    font-family: 'Cormorant Garamond', Georgia, serif;
-  }
+  .big-stat { background: #fff; border: 2px solid #1a2438; border-radius: 16px; padding: 24px; text-align: center; margin-bottom: 20px; position: relative; }
+  .big-stat::before { content: ''; position: absolute; top: 8px; left: 8px; right: 8px; bottom: 8px; border: 1px solid #d4af37; border-radius: 10px; pointer-events: none; }
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; position: relative; }
+  .stat-item .number { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 48px; font-weight: 700; color: #1a2438; line-height: 1; }
+  .stat-item .label { font-size: 16px; color: #5a6478; margin-top: 6px; font-style: italic; font-family: 'Cormorant Garamond', Georgia, serif; }
+  .stat-item.emprestados .number { color: #a02020; }
 
-  .search-box {
-    background: #fff;
-    border: 2px solid #1a2438;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 20px;
+  .search-box { background: #fff; border: 2px solid #1a2438; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+  .search-box label { display: block; font-size: 19px; font-weight: 600; color: #1a2438; margin-bottom: 10px; }
+  input[type="text"], input[type="search"], input[type="password"], input[type="date"], select, textarea {
+    width: 100%; padding: 14px 16px; font-size: 20px; border: 2px solid #c8b58a; border-radius: 10px; font-family: inherit; background: #fff; color: #1a2438;
   }
-  .search-box label {
-    display: block; font-size: 19px; font-weight: 600;
-    color: #1a2438; margin-bottom: 10px;
-  }
-  input[type="text"], input[type="search"], input[type="password"], select, textarea {
-    width: 100%; padding: 16px 18px; font-size: 22px;
-    border: 2px solid #c8b58a; border-radius: 10px;
-    font-family: inherit; background: #fff; color: #1a2438;
-  }
-  input:focus, select:focus, textarea:focus {
-    outline: none; border-color: #1a2438;
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25);
-  }
-  .filter-row { display: flex; gap: 12px; margin-top: 14px; flex-wrap: wrap; }
-  .filter-row select { flex: 1; min-width: 200px; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: #1a2438; box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25); }
+  .filter-row { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+  .filter-row select { flex: 1; min-width: 180px; }
+  .filter-emprestimo { display: flex; align-items: center; gap: 10px; margin-top: 12px; padding: 12px; background: #f4ecd8; border-radius: 8px; }
+  .filter-emprestimo input[type="checkbox"] { width: 22px; height: 22px; cursor: pointer; }
+  .filter-emprestimo label { font-size: 17px; cursor: pointer; margin: 0; font-weight: 500; }
 
-  button.btn {
-    background: #1a2438; color: #d4af37; border: 2px solid #1a2438;
-    padding: 18px 28px; font-size: 21px; font-weight: 600;
-    border-radius: 10px; cursor: pointer; font-family: inherit;
-    min-height: 64px; transition: all 0.15s;
-  }
+  button.btn { background: #1a2438; color: #d4af37; border: 2px solid #1a2438; padding: 16px 26px; font-size: 19px; font-weight: 600; border-radius: 10px; cursor: pointer; font-family: inherit; min-height: 58px; transition: all 0.15s; }
   button.btn:hover { background: #2a3858; border-color: #2a3858; }
   button.btn:disabled { background: #8a92a8; border-color: #8a92a8; cursor: not-allowed; }
-  button.btn-secondary {
-    background: #fff; color: #1a2438; border: 2px solid #1a2438;
-  }
+  button.btn-secondary { background: #fff; color: #1a2438; }
   button.btn-secondary:hover { background: #e8dec2; }
+  button.btn-danger { background: #8a2a1d; color: #fff; border-color: #8a2a1d; }
+  button.btn-danger:hover { background: #6a1a10; border-color: #6a1a10; }
+  button.btn-small { padding: 10px 16px; font-size: 16px; min-height: 44px; }
 
-  .results-count {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 19px; color: #5a6478; margin-bottom: 14px;
-    padding: 0 4px; font-style: italic;
-  }
+  .results-count { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 19px; color: #5a6478; margin-bottom: 14px; padding: 0 4px; font-style: italic; }
   .book-list { display: flex; flex-direction: column; gap: 14px; }
-  .book {
-    background: #fff;
-    border-left: 4px solid #d4af37;
-    border-top: 1px solid #c8b58a;
-    border-right: 1px solid #c8b58a;
-    border-bottom: 1px solid #c8b58a;
-    border-radius: 0 12px 12px 0;
-    padding: 18px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 16px;
-  }
+  .book { background: #fff; border-left: 4px solid #d4af37; border-top: 1px solid #c8b58a; border-right: 1px solid #c8b58a; border-bottom: 1px solid #c8b58a; border-radius: 0 12px 12px 0; padding: 16px 18px; }
+  .book.emprestado { border-left-color: #a02020; background: #fff8f6; }
+  .book-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; }
   .book-info { flex: 1; min-width: 0; }
-  .book-title {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 24px; font-weight: 700; color: #1a2438;
-    margin: 0 0 6px; line-height: 1.25;
-  }
-  .book-author {
-    font-size: 18px; color: #3a4458;
-    margin: 0 0 8px; font-weight: 500;
-  }
-  .book-meta {
-    font-size: 16px; color: #5a6478;
-    margin: 0; font-style: italic;
-  }
-  .book-locations {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .book-location {
-    display: inline-flex;
-    align-items: center;
-    background: #1a2438;
-    color: #d4af37;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-  }
-  .book-location.secao {
-    background: #e8dec2;
-    color: #1a2438;
-    border: 1px solid #c8b58a;
-  }
+  .book-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24px; font-weight: 700; color: #1a2438; margin: 0 0 6px; line-height: 1.25; }
+  .book-author { font-size: 17px; color: #3a4458; margin: 0 0 6px; font-weight: 500; }
+  .book-meta { font-size: 15px; color: #5a6478; margin: 0; font-style: italic; }
+  .book-locations { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .book-location { display: inline-flex; align-items: center; background: #1a2438; color: #d4af37; padding: 5px 10px; border-radius: 5px; font-size: 14px; font-weight: 600; }
+  .book-location.secao { background: #e8dec2; color: #1a2438; border: 1px solid #c8b58a; }
+  .book-emprestado-badge { background: #a02020; color: #fff; padding: 6px 12px; border-radius: 5px; font-size: 14px; font-weight: 600; margin-top: 10px; display: inline-block; }
+  .book-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  .book-actions button { flex: 1; min-width: 110px; }
 
-  .form-section {
-    background: #fff;
-    border: 2px solid #1a2438;
-    border-radius: 14px;
-    padding: 24px;
-    margin-bottom: 20px;
-    position: relative;
-  }
-  .form-section::before {
-    content: '';
-    position: absolute;
-    top: 8px; left: 8px; right: 8px; bottom: 8px;
-    border: 1px solid #d4af37;
-    border-radius: 8px;
-    pointer-events: none;
-  }
+  .form-section { background: #fff; border: 2px solid #1a2438; border-radius: 14px; padding: 22px; margin-bottom: 20px; position: relative; }
+  .form-section::before { content: ''; position: absolute; top: 8px; left: 8px; right: 8px; bottom: 8px; border: 1px solid #d4af37; border-radius: 8px; pointer-events: none; }
   .form-section > * { position: relative; z-index: 1; }
-  .form-field { margin-bottom: 18px; }
-  .form-field label {
-    display: block; font-size: 18px; font-weight: 600;
-    color: #1a2438; margin-bottom: 8px;
-  }
-  .field-hint {
-    font-size: 14px; color: #5a6478;
-    margin-top: 4px; font-style: italic;
-  }
+  .form-field { margin-bottom: 16px; }
+  .form-field label { display: block; font-size: 17px; font-weight: 600; color: #1a2438; margin-bottom: 6px; }
+  .field-hint { font-size: 14px; color: #5a6478; margin-top: 4px; font-style: italic; }
   .required { color: #a02020; }
-  .form-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
-  .form-actions button { flex: 1; min-width: 160px; }
+  .form-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+  .form-actions button { flex: 1; min-width: 140px; }
 
-  .success-msg {
-    background: #e8f2dd; color: #2d5016; padding: 18px 22px;
-    border-radius: 10px; font-size: 19px; font-weight: 600;
-    margin-bottom: 16px; border-left: 4px solid #4a7c2a;
-  }
-  .error-msg {
-    background: #fae8e6; color: #8a2a1d; padding: 18px 22px;
-    border-radius: 10px; font-size: 19px; font-weight: 600;
-    margin-bottom: 16px; border-left: 4px solid #a02020;
-  }
-  .info-box {
-    background: #fff;
-    border: 2px solid #1a2438;
-    border-radius: 10px;
-    padding: 18px 22px;
-    margin-bottom: 20px;
-    font-size: 17px;
-    color: #1a2438;
-    position: relative;
-  }
-  .info-box::before {
-    content: '';
-    position: absolute;
-    top: 4px; left: 4px; right: 4px; bottom: 4px;
-    border: 1px solid #d4af37;
-    border-radius: 6px;
-    pointer-events: none;
-  }
+  .success-msg { background: #e8f2dd; color: #2d5016; padding: 16px 20px; border-radius: 10px; font-size: 18px; font-weight: 600; margin-bottom: 14px; border-left: 4px solid #4a7c2a; }
+  .error-msg { background: #fae8e6; color: #8a2a1d; padding: 16px 20px; border-radius: 10px; font-size: 18px; font-weight: 600; margin-bottom: 14px; border-left: 4px solid #a02020; }
+  .warning-msg { background: #fdf4d3; color: #6b4f0a; padding: 16px 20px; border-radius: 10px; font-size: 17px; margin-bottom: 14px; border-left: 4px solid #d4af37; }
+  .info-box { background: #fff; border: 2px solid #1a2438; border-radius: 10px; padding: 16px 20px; margin-bottom: 18px; font-size: 16px; color: #1a2438; position: relative; }
+  .info-box::before { content: ''; position: absolute; top: 4px; left: 4px; right: 4px; bottom: 4px; border: 1px solid #d4af37; border-radius: 6px; pointer-events: none; }
   .info-box > * { position: relative; }
-  .info-box strong { color: #1a2438; }
 
-  .empty {
-    text-align: center; padding: 60px 20px;
-    color: #5a6478; font-size: 21px;
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-style: italic;
-  }
-  .empty .icon { font-size: 64px; margin-bottom: 16px; }
-
-  .loading {
-    text-align: center; padding: 80px 20px;
-    color: #5a6478; font-size: 20px;
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-style: italic;
-  }
-  .spinner {
-    display: inline-block; width: 48px; height: 48px;
-    border: 4px solid #c8b58a; border-top-color: #1a2438;
-    border-radius: 50%; animation: spin 1s linear infinite;
-    margin-bottom: 16px;
-  }
+  .empty { text-align: center; padding: 50px 20px; color: #5a6478; font-size: 20px; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; }
+  .empty .icon { font-size: 56px; margin-bottom: 14px; }
+  .loading { text-align: center; padding: 70px 20px; color: #5a6478; font-size: 19px; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; }
+  .spinner { display: inline-block; width: 44px; height: 44px; border: 4px solid #c8b58a; border-top-color: #1a2438; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 14px; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  .modal-overlay {
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(26, 36, 56, 0.75); display: flex;
-    align-items: center; justify-content: center;
-    padding: 20px; z-index: 100;
-  }
-  .modal {
-    background: #fff;
-    border: 3px solid #1a2438;
-    border-radius: 14px;
-    padding: 32px;
-    max-width: 480px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-  }
-  .modal::before {
-    content: '';
-    position: absolute;
-    top: 8px; left: 8px; right: 8px; bottom: 8px;
-    border: 1px solid #d4af37;
-    border-radius: 8px;
-    pointer-events: none;
-  }
+  .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(26, 36, 56, 0.75); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 100; }
+  .modal { background: #fff; border: 3px solid #1a2438; border-radius: 14px; padding: 28px; max-width: 520px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+  .modal::before { content: ''; position: absolute; top: 8px; left: 8px; right: 8px; bottom: 8px; border: 1px solid #d4af37; border-radius: 8px; pointer-events: none; }
   .modal > * { position: relative; }
-  .modal h2 {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 32px; color: #1a2438; margin: 0 0 8px;
-  }
-  .modal-ornament {
-    width: 40px; height: 2px; background: #d4af37;
-    margin: 0 0 18px;
-  }
-  .modal p { font-size: 17px; color: #3a4458; margin: 0 0 16px; }
+  .modal h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 30px; color: #1a2438; margin: 0 0 6px; }
+  .modal-ornament { width: 40px; height: 2px; background: #d4af37; margin: 0 0 16px; }
+  .modal p { font-size: 16px; color: #3a4458; margin: 0 0 14px; }
+  .modal .livro-resumo { background: #f4ecd8; padding: 12px 14px; border-radius: 8px; margin-bottom: 16px; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 19px; font-weight: 600; color: #1a2438; }
+  .historico-list { background: #f4ecd8; border-radius: 8px; padding: 12px 14px; max-height: 200px; overflow-y: auto; font-size: 15px; color: #3a4458; }
+  .historico-list .item { padding: 6px 0; border-bottom: 1px dashed #c8b58a; }
+  .historico-list .item:last-child { border-bottom: none; }
 
   details { margin-bottom: 14px; }
-  details summary {
-    cursor: pointer; padding: 14px 18px;
-    background: #fff;
-    border: 2px solid #1a2438;
-    border-radius: 10px;
-    font-size: 19px; font-weight: 600;
-    color: #1a2438;
-  }
-  details[open] summary {
-    margin-bottom: 12px;
-    background: #1a2438;
-    color: #d4af37;
-  }
-  .help-content {
-    padding: 0 18px; font-size: 18px;
-    color: #1a2438;
-  }
+  details summary { cursor: pointer; padding: 14px 18px; background: #fff; border: 2px solid #1a2438; border-radius: 10px; font-size: 18px; font-weight: 600; color: #1a2438; }
+  details[open] summary { margin-bottom: 12px; background: #1a2438; color: #d4af37; }
+  .help-content { padding: 0 18px; font-size: 17px; color: #1a2438; }
   .help-content p { margin: 12px 0; }
   .help-content ol { padding-left: 24px; }
-  .help-content li { margin-bottom: 10px; }
-  .help-content strong { color: #1a2438; }
+  .help-content li { margin-bottom: 8px; }
 
   @media (max-width: 600px) {
     body { font-size: 18px; }
-    h1 { font-size: 36px; }
+    h1 { font-size: 34px; }
     .container { padding: 16px 14px 60px; }
-    header { padding: 28px 16px 24px; margin: -1px -14px 24px; }
-    .book { flex-direction: column; }
-    .tab { font-size: 17px; padding: 14px 16px; }
-    input[type="text"], input[type="search"], input[type="password"], select, textarea { font-size: 20px; }
-    button.btn { font-size: 19px; padding: 16px 22px; }
-    .big-stat .number { font-size: 48px; }
-    .modal { padding: 24px; }
-    .modal h2 { font-size: 26px; }
+    header { padding: 26px 16px 22px; margin: -1px -14px 22px; }
+    .tab { font-size: 16px; padding: 12px 14px; }
+    input, select, textarea { font-size: 18px; }
+    button.btn { font-size: 17px; padding: 14px 20px; }
+    .stat-item .number { font-size: 38px; }
+    .modal { padding: 22px; }
+    .modal h2 { font-size: 24px; }
     .book-title { font-size: 21px; }
+    .book-actions button { font-size: 14px; padding: 10px 12px; }
   }
 </style>
 </head>
@@ -394,79 +144,65 @@
     <div class="ornament"></div>
     <p class="subtitle">Acervo pessoal de Belmires Soles Ribeiro</p>
     <div class="user-status" id="user-status">
-      <button class="btn-login-link" onclick="abrirLogin()">🔐 Entrar para cadastrar livros</button>
+      <button class="btn-login-link" onclick="abrirLogin()">🔐 Entrar para gerenciar livros</button>
     </div>
   </header>
 
   <div class="tabs" id="tabs">
     <button class="tab active" data-tab="buscar">🔍 Buscar</button>
-    <button class="tab somente-logado" data-tab="adicionar">➕ Adicionar livro</button>
+    <button class="tab somente-logado" data-tab="adicionar">➕ Adicionar</button>
     <button class="tab" data-tab="ajuda">❓ Ajuda</button>
   </div>
 
   <div class="panel active" id="panel-buscar">
     <div class="big-stat">
-      <div class="number" id="total-livros">...</div>
-      <div class="label">livros no acervo</div>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="number" id="total-livros">...</div>
+          <div class="label">livros no acervo</div>
+        </div>
+        <div class="stat-item emprestados">
+          <div class="number" id="total-emprestados">...</div>
+          <div class="label">emprestados</div>
+        </div>
+      </div>
     </div>
 
     <div class="search-box">
       <label for="busca">Buscar livro</label>
       <input type="search" id="busca" placeholder="Digite título, autor ou parte do nome..." autocomplete="off">
       <div class="filter-row">
-        <select id="filtro-ambiente">
-          <option value="">Todos os ambientes</option>
-        </select>
-        <select id="filtro-local">
-          <option value="">Todos os locais</option>
-        </select>
+        <select id="filtro-ambiente"><option value="">Todos os ambientes</option></select>
+        <select id="filtro-local"><option value="">Todos os locais</option></select>
+      </div>
+      <div class="filter-emprestimo">
+        <input type="checkbox" id="filtro-emprestados">
+        <label for="filtro-emprestados">📕 Mostrar só livros emprestados</label>
       </div>
     </div>
 
-    <div id="status-carregando" class="loading">
-      <div class="spinner"></div>
-      <p>Carregando livros...</p>
-    </div>
-
+    <div id="status-carregando" class="loading"><div class="spinner"></div><p>Carregando livros...</p></div>
     <div class="results-count" id="contador" style="display:none;"></div>
     <div class="book-list" id="lista-livros"></div>
   </div>
 
   <div class="panel" id="panel-adicionar">
-    <div class="info-box">
-      Preencha os dados do livro. Apenas <strong>título</strong> e <strong>ambiente</strong> são obrigatórios.
-    </div>
+    <div class="info-box">Preencha os dados do livro. Apenas <strong>título</strong> e <strong>ambiente</strong> são obrigatórios.</div>
     <div id="msg-add"></div>
     <div class="form-section">
-      <div class="form-field">
-        <label for="f-titulo">Título do livro <span class="required">*</span></label>
-        <input type="text" id="f-titulo" placeholder="Ex: A LANTERNA NA POPA">
-      </div>
-      <div class="form-field">
-        <label for="f-autor">Autor</label>
-        <input type="text" id="f-autor" placeholder="Ex: ROBERTO CAMPOS">
-      </div>
-      <div class="form-field">
-        <label for="f-editora">Editora</label>
-        <input type="text" id="f-editora" placeholder="Ex: TOPBOOKS EDITORA">
-      </div>
-      <div class="form-field">
-        <label for="f-ano">Ano</label>
-        <input type="text" id="f-ano" placeholder="Ex: 1994">
-      </div>
+      <div class="form-field"><label for="f-titulo">Título do livro <span class="required">*</span></label><input type="text" id="f-titulo" placeholder="Ex: A LANTERNA NA POPA"></div>
+      <div class="form-field"><label for="f-autor">Autor</label><input type="text" id="f-autor" placeholder="Ex: ROBERTO CAMPOS"></div>
+      <div class="form-field"><label for="f-editora">Editora</label><input type="text" id="f-editora" placeholder="Ex: TOPBOOKS EDITORA"></div>
+      <div class="form-field"><label for="f-ano">Ano</label><input type="text" id="f-ano" placeholder="Ex: 1994"></div>
       <div class="form-field">
         <label for="f-ambiente">Ambiente <span class="required">*</span></label>
-        <select id="f-ambiente">
-          <option value="Escritório">Escritório</option>
-          <option value="Sótão">Sótão</option>
-          <option value="Trabalho">Trabalho</option>
-        </select>
+        <select id="f-ambiente"><option value="Escritório">Escritório</option><option value="Sótão">Sótão</option><option value="Trabalho">Trabalho</option></select>
         <div class="field-hint">Onde o livro fica fisicamente</div>
       </div>
       <div class="form-field">
         <label for="f-local">Seção / prateleira</label>
         <input type="text" id="f-local" placeholder="Ex: SEÇÃO 1, Estante esquerda, Caixa 3...">
-        <div class="field-hint">Como vocês identificam dentro do ambiente (pode deixar em branco se ainda não souber)</div>
+        <div class="field-hint">Como identificam dentro do ambiente (pode deixar em branco)</div>
       </div>
       <div class="form-actions">
         <button class="btn" id="btn-salvar" onclick="salvarLivro()">✓ Salvar livro</button>
@@ -476,43 +212,34 @@
   </div>
 
   <div class="panel" id="panel-ajuda">
-    <details open>
-      <summary>Como buscar um livro?</summary>
-      <div class="help-content">
-        <p>Na aba <strong>🔍 Buscar</strong>, digite qualquer parte do título ou do autor. A lista vai filtrando enquanto você digita.</p>
-        <p>Para ver só livros de um ambiente (escritório, sótão, trabalho), use o filtro <strong>"Todos os ambientes"</strong>.</p>
-        <p>Para ver só livros de uma seção específica, use o filtro <strong>"Todos os locais"</strong>.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>Como cadastrar um livro novo?</summary>
-      <div class="help-content">
-        <p>Primeiro você precisa <strong>entrar</strong> (clique em "Entrar para cadastrar livros" lá em cima).</p>
-        <p>Digite a senha. Depois aparece a aba <strong>➕ Adicionar livro</strong>. Preencha o título e o ambiente (obrigatórios) e os outros campos se souber.</p>
-        <p>Clique em <strong>Salvar livro</strong>. Ele já fica salvo na nuvem e aparece para todo mundo na hora.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>Posso usar no celular?</summary>
-      <div class="help-content">
-        <p>Sim! Funciona em qualquer celular com navegador.</p>
-        <p>Para deixar o acesso mais rápido, você pode <strong>adicionar à tela inicial</strong>:</p>
-        <ol>
-          <li><strong>iPhone (Safari):</strong> toque no botão de compartilhar e escolha "Adicionar à Tela de Início"</li>
-          <li><strong>Android (Chrome):</strong> toque nos três pontinhos do menu e escolha "Adicionar à tela inicial"</li>
-        </ol>
-        <p>Aí fica como se fosse um aplicativo.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>Onde os livros ficam guardados?</summary>
-      <div class="help-content">
-        <p>Numa planilha do Google na nuvem. Toda vez que você abre o site, ele busca os livros mais recentes lá. Quando alguém cadastra um livro novo, fica disponível para todos imediatamente.</p>
-      </div>
-    </details>
+    <details open><summary>Como buscar um livro?</summary><div class="help-content">
+      <p>Na aba <strong>🔍 Buscar</strong>, digite qualquer parte do título ou do autor. A lista vai filtrando enquanto você digita.</p>
+      <p>Use os filtros de ambiente e local para refinar. Marque "Mostrar só emprestados" para ver quem está com o quê.</p>
+    </div></details>
+    <details><summary>Como cadastrar um livro novo?</summary><div class="help-content">
+      <p>Primeiro entre com a senha (clique em "Entrar para gerenciar livros" no topo).</p>
+      <p>Depois vá na aba <strong>➕ Adicionar</strong>. Preencha o título e o ambiente. Os outros campos são opcionais.</p>
+    </div></details>
+    <details><summary>Como marcar um livro como emprestado?</summary><div class="help-content">
+      <p>Entre com a senha. Encontre o livro na busca. No card do livro vai aparecer um botão <strong>"📕 Emprestar"</strong>.</p>
+      <p>Clique, digite para quem foi emprestado e, opcionalmente, a data de devolução prevista. Pronto.</p>
+      <p>Quando o livro voltar, encontre ele e clique em <strong>"✓ Marcar devolvido"</strong>.</p>
+    </div></details>
+    <details><summary>Como editar a localização de um livro?</summary><div class="help-content">
+      <p>Entre com a senha. Encontre o livro. Clique em <strong>"✏️ Editar"</strong> no card. Você pode mudar o ambiente e a seção.</p>
+      <p>O título e o autor não podem ser editados pelo site, por segurança. Se precisar corrigir, fale com a Hévila.</p>
+    </div></details>
+    <details><summary>Como excluir um livro?</summary><div class="help-content">
+      <p>Entre com a senha. Encontre o livro. Clique em <strong>"🗑️ Excluir"</strong> no card. Vai aparecer uma confirmação dupla para evitar erro.</p>
+      <p><strong>Atenção:</strong> exclusão é permanente. Só use se for um livro que realmente saiu do acervo (vendido, doado, perdido).</p>
+    </div></details>
+    <details><summary>Posso usar no celular?</summary><div class="help-content">
+      <p>Sim, funciona em qualquer celular. Para virar atalho de aplicativo:</p>
+      <ol>
+        <li><strong>iPhone (Safari):</strong> botão de compartilhar → "Adicionar à Tela de Início"</li>
+        <li><strong>Android (Chrome):</strong> três pontinhos → "Adicionar à tela inicial"</li>
+      </ol>
+    </div></details>
   </div>
 </div>
 
@@ -524,6 +251,9 @@
   var URL_LISTAR = API_BASE + '/biblioteca-belmires-listar';
   var URL_AUTH = API_BASE + '/biblioteca-belmires-auth';
   var URL_CADASTRAR = API_BASE + '/biblioteca-belmires-cadastrar';
+  var URL_EDITAR = API_BASE + '/biblioteca-belmires-editar';
+  var URL_EMPRESTIMO = API_BASE + '/biblioteca-belmires-emprestimo';
+  var URL_EXCLUIR = API_BASE + '/biblioteca-belmires-excluir';
 
   var state = {
     livros: [],
@@ -532,237 +262,166 @@
     token: sessionStorage.getItem('bib_token') || null
   };
 
-  function escape(s) {
-    return String(s||'').replace(/[&<>"']/g, function(c) {
-      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
-    });
-  }
-  function tirarAcentos(s) {
-    return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
-  }
+  function esc(s) { return String(s||'').replace(/[&<>"']/g, function(c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function semAcento(s) { return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(); }
+  function formatarData(d) { if (!d) return ''; var p = d.split('-'); return p.length===3 ? p[2]+'/'+p[1]+'/'+p[0] : d; }
 
   function carregarLivros() {
     fetch(URL_LISTAR)
-      .then(function(resp) { return resp.json(); })
+      .then(function(r){ return r.json(); })
       .then(function(data) {
-        if (!data.ok) throw new Error('Erro na resposta do servidor');
+        if (!data.ok) throw new Error('Erro no servidor');
         state.livros = data.livros || [];
-        var setAmb = {}, setLoc = {};
+        var ambSet = {}, locSet = {};
         state.livros.forEach(function(l) {
-          if (l.ambiente) setAmb[l.ambiente] = true;
-          if (l.local) setLoc[l.local] = true;
+          if (l.ambiente) ambSet[l.ambiente] = true;
+          if (l.local) locSet[l.local] = true;
         });
-        state.ambientes = Object.keys(setAmb);
-        state.locais = Object.keys(setLoc);
+        state.ambientes = Object.keys(ambSet);
+        state.locais = Object.keys(locSet);
         document.getElementById('status-carregando').style.display = 'none';
         document.getElementById('contador').style.display = 'block';
         renderTudo();
       })
       .catch(function(e) {
         document.getElementById('status-carregando').innerHTML =
-          '<div class="error-msg">Não foi possível carregar os livros. Verifique sua conexão com a internet e tente recarregar a página.</div>' +
-          '<p style="font-size:14px;color:#5a6478;text-align:center;">Detalhe técnico: ' + escape(e.message) + '</p>';
+          '<div class="error-msg">Não foi possível carregar os livros. Verifique a conexão.</div>' +
+          '<p style="font-size:14px;color:#5a6478;text-align:center;">' + esc(e.message) + '</p>';
       });
   }
 
   function renderTudo() {
-    renderTotal();
+    document.getElementById('total-livros').textContent = state.livros.length;
+    var emprestados = state.livros.filter(function(l){ return l.emprestado_para && l.emprestado_para.trim(); }).length;
+    document.getElementById('total-emprestados').textContent = emprestados;
     renderListaLivros();
     renderFiltroAmbiente();
     renderFiltroLocal();
   }
 
-  function renderTotal() {
-    document.getElementById('total-livros').textContent = state.livros.length;
-  }
-
   function renderListaLivros() {
-    var q = tirarAcentos(document.getElementById('busca').value.trim());
+    var q = semAcento(document.getElementById('busca').value.trim());
     var fa = document.getElementById('filtro-ambiente').value;
     var fl = document.getElementById('filtro-local').value;
-    var livros = state.livros.slice().sort(function(a,b) {
-      return (a.titulo||'').localeCompare(b.titulo||'', 'pt');
-    });
-    if (q) {
-      livros = livros.filter(function(l) {
-        var alvo = tirarAcentos((l.titulo||'') + ' ' + (l.autor||'') + ' ' + (l.editora||''));
-        return alvo.indexOf(q) !== -1;
-      });
-    }
-    if (fa) livros = livros.filter(function(l) { return l.ambiente === fa; });
-    if (fl) livros = livros.filter(function(l) { return l.local === fl; });
+    var soEmprestados = document.getElementById('filtro-emprestados').checked;
+    var livros = state.livros.slice().sort(function(a,b){ return (a.titulo||'').localeCompare(b.titulo||'', 'pt'); });
+    if (q) livros = livros.filter(function(l){ return semAcento((l.titulo||'')+' '+(l.autor||'')+' '+(l.editora||'')).indexOf(q) !== -1; });
+    if (fa) livros = livros.filter(function(l){ return l.ambiente === fa; });
+    if (fl) livros = livros.filter(function(l){ return l.local === fl; });
+    if (soEmprestados) livros = livros.filter(function(l){ return l.emprestado_para && l.emprestado_para.trim(); });
 
     var el = document.getElementById('lista-livros');
     var contador = document.getElementById('contador');
+    if (state.livros.length === 0) { contador.textContent = ''; el.innerHTML = '<div class="empty"><div class="icon">📖</div><p>Nenhum livro ainda.</p></div>'; return; }
+    if (livros.length === 0) { contador.textContent = 'Nenhum livro encontrado.'; el.innerHTML = '<div class="empty"><div class="icon">🔎</div><p>Tente outra busca.</p></div>'; return; }
+    contador.textContent = 'Mostrando ' + livros.length + (livros.length === 1 ? ' livro' : ' livros') + (state.livros.length !== livros.length ? ' (de ' + state.livros.length + ')' : '');
 
-    if (state.livros.length === 0) {
-      contador.textContent = '';
-      el.innerHTML = '<div class="empty"><div class="icon">📖</div><p>Nenhum livro ainda.</p></div>';
-      return;
-    }
-    if (livros.length === 0) {
-      contador.textContent = 'Nenhum livro encontrado.';
-      el.innerHTML = '<div class="empty"><div class="icon">🔎</div><p>Tente buscar de outra forma ou limpe os filtros.</p></div>';
-      return;
-    }
-    contador.textContent = 'Mostrando ' + livros.length + (livros.length === 1 ? ' livro' : ' livros') + (state.livros.length !== livros.length ? ' (de ' + state.livros.length + ' no total)' : '');
-
+    var logado = !!state.token;
     el.innerHTML = livros.map(function(l) {
       var metaParts = [];
-      if (l.editora) metaParts.push(escape(l.editora));
-      if (l.ano) metaParts.push(escape(l.ano));
+      if (l.editora) metaParts.push(esc(l.editora));
+      if (l.ano) metaParts.push(esc(l.ano));
       var meta = metaParts.join(' · ');
       var locations = '';
       if (l.ambiente || l.local) {
         locations = '<div class="book-locations">';
-        if (l.ambiente) locations += '<span class="book-location">📍 ' + escape(l.ambiente) + '</span>';
-        if (l.local) locations += '<span class="book-location secao">' + escape(l.local) + '</span>';
+        if (l.ambiente) locations += '<span class="book-location">📍 ' + esc(l.ambiente) + '</span>';
+        if (l.local) locations += '<span class="book-location secao">' + esc(l.local) + '</span>';
         locations += '</div>';
       }
-      return '<div class="book">' +
-        '<div class="book-info">' +
-          '<p class="book-title">' + escape(l.titulo) + '</p>' +
-          (l.autor ? '<p class="book-author">' + escape(l.autor) + '</p>' : '') +
+      var emprestadoBadge = '';
+      var emprestado = l.emprestado_para && l.emprestado_para.trim();
+      if (emprestado) {
+        emprestadoBadge = '<div class="book-emprestado-badge">📕 Emprestado para ' + esc(l.emprestado_para);
+        if (l.emprestado_em) emprestadoBadge += ' (desde ' + formatarData(l.emprestado_em) + ')';
+        emprestadoBadge += '</div>';
+        if (l.devolver_ate) emprestadoBadge += '<div style="font-size:14px;color:#8a2a1d;margin-top:4px;">Devolver até ' + formatarData(l.devolver_ate) + '</div>';
+      }
+      var actions = '';
+      if (logado) {
+        actions = '<div class="book-actions">';
+        if (emprestado) {
+          actions += '<button class="btn btn-small" onclick="window._abrirDevolver(\'' + esc(l.id) + '\')">✓ Devolver</button>';
+        } else {
+          actions += '<button class="btn btn-small" onclick="window._abrirEmprestar(\'' + esc(l.id) + '\')">📕 Emprestar</button>';
+        }
+        actions += '<button class="btn btn-small btn-secondary" onclick="window._abrirEditar(\'' + esc(l.id) + '\')">✏️ Editar</button>';
+        actions += '<button class="btn btn-small btn-secondary" onclick="window._verHistorico(\'' + esc(l.id) + '\')">📜 Histórico</button>';
+        actions += '<button class="btn btn-small btn-danger" onclick="window._abrirExcluir(\'' + esc(l.id) + '\')">🗑️ Excluir</button>';
+        actions += '</div>';
+      }
+      return '<div class="book' + (emprestado ? ' emprestado' : '') + '">' +
+        '<div class="book-header"><div class="book-info">' +
+          '<p class="book-title">' + esc(l.titulo) + '</p>' +
+          (l.autor ? '<p class="book-author">' + esc(l.autor) + '</p>' : '') +
           (meta ? '<p class="book-meta">' + meta + '</p>' : '') +
-          locations +
-        '</div>' +
+          locations + emprestadoBadge +
+        '</div></div>' + actions +
       '</div>';
     }).join('');
   }
 
-  function ordenarTexto(arr) {
-    return arr.slice().sort(function(a,b) {
-      var na = parseInt(String(a).replace(/\D/g,''));
-      var nb = parseInt(String(b).replace(/\D/g,''));
-      if (!isNaN(na) && !isNaN(nb)) return na - nb;
-      return String(a).localeCompare(String(b), 'pt');
-    });
-  }
+  function ordenarTexto(arr) { return arr.slice().sort(function(a,b){ var na=parseInt(String(a).replace(/\D/g,'')), nb=parseInt(String(b).replace(/\D/g,'')); if(!isNaN(na)&&!isNaN(nb))return na-nb; return String(a).localeCompare(String(b),'pt'); }); }
+  function renderFiltroAmbiente() { var sel=document.getElementById('filtro-ambiente'),a=sel.value,opts='<option value="">Todos os ambientes</option>'; ordenarTexto(state.ambientes).forEach(function(x){var c=state.livros.filter(function(li){return li.ambiente===x;}).length; opts+='<option value="'+esc(x)+'">'+esc(x)+' ('+c+')</option>';}); sel.innerHTML=opts; if(state.ambientes.indexOf(a)>-1)sel.value=a; }
+  function renderFiltroLocal() { var sel=document.getElementById('filtro-local'),a=sel.value,opts='<option value="">Todos os locais</option>'; ordenarTexto(state.locais).forEach(function(x){var c=state.livros.filter(function(li){return li.local===x;}).length; opts+='<option value="'+esc(x)+'">'+esc(x)+' ('+c+')</option>';}); sel.innerHTML=opts; if(state.locais.indexOf(a)>-1)sel.value=a; }
 
-  function renderFiltroAmbiente() {
-    var sel = document.getElementById('filtro-ambiente');
-    var atual = sel.value;
-    var opts = '<option value="">Todos os ambientes</option>';
-    ordenarTexto(state.ambientes).forEach(function(a) {
-      var count = state.livros.filter(function(li) { return li.ambiente === a; }).length;
-      opts += '<option value="' + escape(a) + '">' + escape(a) + ' (' + count + ')</option>';
-    });
-    sel.innerHTML = opts;
-    if (state.ambientes.indexOf(atual) > -1) sel.value = atual;
-  }
-
-  function renderFiltroLocal() {
-    var sel = document.getElementById('filtro-local');
-    var atual = sel.value;
-    var opts = '<option value="">Todos os locais</option>';
-    ordenarTexto(state.locais).forEach(function(l) {
-      var count = state.livros.filter(function(li) { return li.local === l; }).length;
-      opts += '<option value="' + escape(l) + '">' + escape(l) + ' (' + count + ')</option>';
-    });
-    sel.innerHTML = opts;
-    if (state.locais.indexOf(atual) > -1) sel.value = atual;
-  }
+  function buscarLivro(id) { for(var i=0;i<state.livros.length;i++) if(state.livros[i].id===id) return state.livros[i]; return null; }
 
   document.getElementById('tabs').addEventListener('click', function(e) {
-    var btn = e.target.closest('.tab');
-    if (!btn) return;
-    document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
-    document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
+    var btn = e.target.closest('.tab'); if (!btn) return;
+    document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});
     btn.classList.add('active');
     document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
   });
-
   document.getElementById('busca').addEventListener('input', renderListaLivros);
   document.getElementById('filtro-ambiente').addEventListener('change', renderListaLivros);
   document.getElementById('filtro-local').addEventListener('change', renderListaLivros);
+  document.getElementById('filtro-emprestados').addEventListener('change', renderListaLivros);
 
   window.abrirLogin = function() {
     if (state.token) {
       if (confirm('Você já está logado. Quer sair?')) {
-        sessionStorage.removeItem('bib_token');
-        state.token = null;
-        atualizarStatusLogin();
+        sessionStorage.removeItem('bib_token'); state.token = null; atualizarStatusLogin(); renderListaLivros();
       }
       return;
     }
     document.getElementById('modal-area').innerHTML =
       '<div class="modal-overlay" onclick="if(event.target===this) window._fecharModal()">' +
-        '<div class="modal">' +
-          '<h2>Entrar</h2>' +
-          '<div class="modal-ornament"></div>' +
-          '<p>Digite a senha para cadastrar livros novos.</p>' +
-          '<div class="form-field">' +
-            '<label for="m-senha">Senha</label>' +
-            '<input type="password" id="m-senha" autofocus>' +
-          '</div>' +
-          '<div id="msg-login"></div>' +
-          '<div class="form-actions">' +
-            '<button class="btn" id="btn-fazer-login" onclick="window._fazerLogin()">Entrar</button>' +
-            '<button class="btn btn-secondary" onclick="window._fecharModal()">Cancelar</button>' +
-          '</div>' +
-        '</div>' +
-      '</div>';
-    setTimeout(function() {
-      var inp = document.getElementById('m-senha');
-      if (inp) {
-        inp.focus();
-        inp.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter') window._fazerLogin();
-        });
-      }
-    }, 50);
+        '<div class="modal"><h2>Entrar</h2><div class="modal-ornament"></div>' +
+        '<p>Digite a senha para gerenciar livros.</p>' +
+        '<div class="form-field"><label for="m-senha">Senha</label><input type="password" id="m-senha" autofocus></div>' +
+        '<div id="msg-login"></div>' +
+        '<div class="form-actions"><button class="btn" id="btn-fazer-login" onclick="window._fazerLogin()">Entrar</button><button class="btn btn-secondary" onclick="window._fecharModal()">Cancelar</button></div>' +
+        '</div></div>';
+    setTimeout(function(){ var i=document.getElementById('m-senha'); if(i){i.focus(); i.addEventListener('keydown',function(e){if(e.key==='Enter')window._fazerLogin();});}},50);
   };
-
   window._fazerLogin = function() {
-    var senha = document.getElementById('m-senha').value;
-    if (!senha) return;
-    var btn = document.getElementById('btn-fazer-login');
-    btn.disabled = true;
-    btn.textContent = 'Verificando...';
-    fetch(URL_AUTH, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({senha: senha})
-    })
-    .then(function(resp) { return resp.json(); })
-    .then(function(data) {
-      if (data.ok && data.token) {
-        state.token = data.token;
-        sessionStorage.setItem('bib_token', data.token);
-        window._fecharModal();
-        atualizarStatusLogin();
-      } else {
-        document.getElementById('msg-login').innerHTML =
-          '<div class="error-msg">' + escape(data.erro || 'Senha incorreta.') + '</div>';
-        btn.disabled = false;
-        btn.textContent = 'Entrar';
-      }
-    })
-    .catch(function() {
-      document.getElementById('msg-login').innerHTML =
-        '<div class="error-msg">Erro de conexão. Verifique sua internet.</div>';
-      btn.disabled = false;
-      btn.textContent = 'Entrar';
-    });
+    var senha = document.getElementById('m-senha').value; if (!senha) return;
+    var btn = document.getElementById('btn-fazer-login'); btn.disabled = true; btn.textContent = 'Verificando...';
+    fetch(URL_AUTH, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({senha:senha})})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if (d.ok && d.token) { state.token = d.token; sessionStorage.setItem('bib_token', d.token); window._fecharModal(); atualizarStatusLogin(); renderListaLivros(); }
+        else { document.getElementById('msg-login').innerHTML = '<div class="error-msg">' + esc(d.erro || 'Senha incorreta.') + '</div>'; btn.disabled = false; btn.textContent = 'Entrar'; }
+      })
+      .catch(function(){ document.getElementById('msg-login').innerHTML = '<div class="error-msg">Erro de conexão.</div>'; btn.disabled = false; btn.textContent = 'Entrar'; });
   };
-
-  window._fecharModal = function() {
-    document.getElementById('modal-area').innerHTML = '';
-  };
+  window._fecharModal = function() { document.getElementById('modal-area').innerHTML = ''; };
 
   function atualizarStatusLogin() {
     var el = document.getElementById('user-status');
     if (state.token) {
       document.body.classList.add('logado');
       el.classList.add('logado');
-      el.innerHTML = '✓ Você está logado · <button class="btn-login-link" onclick="abrirLogin()">Sair</button>';
+      el.innerHTML = '✓ Logado · <button class="btn-login-link" onclick="abrirLogin()">Sair</button>';
     } else {
       document.body.classList.remove('logado');
       el.classList.remove('logado');
-      el.innerHTML = '<button class="btn-login-link" onclick="abrirLogin()">🔐 Entrar para cadastrar livros</button>';
+      el.innerHTML = '<button class="btn-login-link" onclick="abrirLogin()">🔐 Entrar para gerenciar livros</button>';
       if (document.querySelector('.tab[data-tab="adicionar"].active')) {
-        document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
-        document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
+        document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+        document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});
         document.querySelector('.tab[data-tab="buscar"]').classList.add('active');
         document.getElementById('panel-buscar').classList.add('active');
       }
@@ -770,96 +429,135 @@
   }
 
   window.salvarLivro = function() {
-    if (!state.token) {
-      alert('Você precisa entrar primeiro.');
-      abrirLogin();
-      return;
-    }
+    if (!state.token) { abrirLogin(); return; }
     var titulo = document.getElementById('f-titulo').value.trim();
-    if (!titulo) {
-      mostrarMsg('msg-add', 'Por favor, preencha o título do livro.', 'error');
-      document.getElementById('f-titulo').focus();
-      return;
-    }
+    if (!titulo) { mostrarMsg('msg-add', 'Preencha o título.', 'error'); document.getElementById('f-titulo').focus(); return; }
     var ambiente = document.getElementById('f-ambiente').value;
-    if (!ambiente) {
-      mostrarMsg('msg-add', 'Por favor, escolha o ambiente.', 'error');
-      return;
-    }
-    var btn = document.getElementById('btn-salvar');
-    btn.disabled = true;
-    btn.textContent = 'Salvando...';
-
-    var dados = {
-      token: state.token,
-      titulo: titulo,
-      autor: document.getElementById('f-autor').value.trim(),
-      editora: document.getElementById('f-editora').value.trim(),
-      ano: document.getElementById('f-ano').value.trim(),
-      ambiente: ambiente,
-      local: document.getElementById('f-local').value.trim(),
-      criado_por: 'web'
-    };
-
-    fetch(URL_CADASTRAR, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(dados)
-    })
-    .then(function(resp) { return resp.json(); })
-    .then(function(data) {
-      if (data.ok) {
-        mostrarMsg('msg-add', '✓ Livro "' + escape(titulo) + '" cadastrado!', 'success');
-        limparForm();
-        state.livros.push({
-          id: data.livro.id,
-          titulo: titulo,
-          autor: dados.autor,
-          editora: dados.editora,
-          ano: dados.ano,
-          ambiente: ambiente,
-          local: dados.local
-        });
-        if (state.ambientes.indexOf(ambiente) === -1) state.ambientes.push(ambiente);
-        if (dados.local && state.locais.indexOf(dados.local) === -1) state.locais.push(dados.local);
-        renderTudo();
-      } else {
-        if (data.erro && data.erro.indexOf('Token') >= 0) {
-          sessionStorage.removeItem('bib_token');
-          state.token = null;
-          atualizarStatusLogin();
-          mostrarMsg('msg-add', 'Sua sessão expirou. Entre novamente.', 'error');
-          setTimeout(abrirLogin, 1500);
+    var btn = document.getElementById('btn-salvar'); btn.disabled = true; btn.textContent = 'Salvando...';
+    var dados = { token: state.token, titulo: titulo, autor: document.getElementById('f-autor').value.trim(), editora: document.getElementById('f-editora').value.trim(), ano: document.getElementById('f-ano').value.trim(), ambiente: ambiente, local: document.getElementById('f-local').value.trim(), criado_por: 'web' };
+    fetch(URL_CADASTRAR, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(dados)})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if (d.ok) {
+          mostrarMsg('msg-add', '✓ Livro "' + esc(titulo) + '" cadastrado!', 'success');
+          limparForm();
+          state.livros.push({ id: d.livro.id, titulo: titulo, autor: dados.autor, editora: dados.editora, ano: dados.ano, ambiente: ambiente, local: dados.local });
+          if (state.ambientes.indexOf(ambiente) === -1) state.ambientes.push(ambiente);
+          if (dados.local && state.locais.indexOf(dados.local) === -1) state.locais.push(dados.local);
+          renderTudo();
         } else {
-          mostrarMsg('msg-add', data.erro || 'Erro ao salvar.', 'error');
+          if (d.erro && d.erro.indexOf('Token') >= 0) { sessionStorage.removeItem('bib_token'); state.token = null; atualizarStatusLogin(); mostrarMsg('msg-add', 'Sessão expirou. Entre novamente.', 'error'); setTimeout(abrirLogin, 1500); }
+          else mostrarMsg('msg-add', d.erro || 'Erro ao salvar.', 'error');
         }
-      }
-      btn.disabled = false;
-      btn.textContent = '✓ Salvar livro';
-    })
-    .catch(function() {
-      mostrarMsg('msg-add', 'Erro de conexão. Verifique sua internet.', 'error');
-      btn.disabled = false;
-      btn.textContent = '✓ Salvar livro';
-    });
+        btn.disabled = false; btn.textContent = '✓ Salvar livro';
+      })
+      .catch(function(){ mostrarMsg('msg-add', 'Erro de conexão.', 'error'); btn.disabled = false; btn.textContent = '✓ Salvar livro'; });
+  };
+  window.limparForm = function() { ['f-titulo','f-autor','f-editora','f-ano','f-local'].forEach(function(id){document.getElementById(id).value='';}); document.getElementById('f-titulo').focus(); };
+
+  function mostrarMsg(id, t, tipo) { var e = document.getElementById(id); e.innerHTML = '<div class="' + (tipo==='error'?'error-msg':'success-msg') + '">' + t + '</div>'; if (tipo !== 'error') setTimeout(function(){e.innerHTML='';}, 5000); }
+
+  window._abrirEmprestar = function(id) {
+    var l = buscarLivro(id); if (!l) return;
+    document.getElementById('modal-area').innerHTML =
+      '<div class="modal-overlay" onclick="if(event.target===this) window._fecharModal()"><div class="modal">' +
+      '<h2>📕 Emprestar livro</h2><div class="modal-ornament"></div>' +
+      '<div class="livro-resumo">' + esc(l.titulo) + '</div>' +
+      '<div class="form-field"><label for="m-nome">Para quem? <span class="required">*</span></label><input type="text" id="m-nome" placeholder="Nome de quem está pegando"></div>' +
+      '<div class="form-field"><label for="m-data">Devolver até (opcional)</label><input type="date" id="m-data"></div>' +
+      '<div id="msg-empr"></div>' +
+      '<div class="form-actions"><button class="btn" id="btn-conf-empr" onclick="window._confirmarEmprestar(\'' + esc(id) + '\')">Confirmar empréstimo</button><button class="btn btn-secondary" onclick="window._fecharModal()">Cancelar</button></div>' +
+      '</div></div>';
+    setTimeout(function(){ document.getElementById('m-nome').focus(); },50);
+  };
+  window._confirmarEmprestar = function(id) {
+    var nome = document.getElementById('m-nome').value.trim();
+    if (!nome) { document.getElementById('msg-empr').innerHTML = '<div class="error-msg">Informe o nome.</div>'; return; }
+    var data = document.getElementById('m-data').value;
+    var btn = document.getElementById('btn-conf-empr'); btn.disabled = true; btn.textContent = 'Salvando...';
+    fetch(URL_EMPRESTIMO, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token: state.token, id: id, acao: 'emprestar', emprestado_para: nome, devolver_ate: data})})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if (d.ok) { window._fecharModal(); carregarLivros(); }
+        else { document.getElementById('msg-empr').innerHTML = '<div class="error-msg">' + esc(d.erro) + '</div>'; btn.disabled = false; btn.textContent = 'Confirmar empréstimo'; }
+      })
+      .catch(function(){ document.getElementById('msg-empr').innerHTML = '<div class="error-msg">Erro de conexão.</div>'; btn.disabled = false; btn.textContent = 'Confirmar empréstimo'; });
+  };
+  window._abrirDevolver = function(id) {
+    var l = buscarLivro(id); if (!l) return;
+    if (!confirm('Marcar "' + l.titulo + '" como devolvido por ' + (l.emprestado_para || 'desconhecido') + '?')) return;
+    fetch(URL_EMPRESTIMO, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token: state.token, id: id, acao: 'devolver'})})
+      .then(function(r){return r.json();})
+      .then(function(d){ if (d.ok) carregarLivros(); else alert('Erro: ' + (d.erro || 'desconhecido')); })
+      .catch(function(){ alert('Erro de conexão.'); });
   };
 
-  window.limparForm = function() {
-    document.getElementById('f-titulo').value = '';
-    document.getElementById('f-autor').value = '';
-    document.getElementById('f-editora').value = '';
-    document.getElementById('f-ano').value = '';
-    document.getElementById('f-local').value = '';
-    document.getElementById('f-titulo').focus();
+  window._abrirEditar = function(id) {
+    var l = buscarLivro(id); if (!l) return;
+    document.getElementById('modal-area').innerHTML =
+      '<div class="modal-overlay" onclick="if(event.target===this) window._fecharModal()"><div class="modal">' +
+      '<h2>✏️ Editar livro</h2><div class="modal-ornament"></div>' +
+      '<div class="livro-resumo">' + esc(l.titulo) + '</div>' +
+      '<p style="font-size:14px;color:#5a6478;">Título e autor não podem ser editados aqui, por segurança.</p>' +
+      '<div class="form-field"><label for="e-ambiente">Ambiente</label><select id="e-ambiente"><option value="Escritório">Escritório</option><option value="Sótão">Sótão</option><option value="Trabalho">Trabalho</option></select></div>' +
+      '<div class="form-field"><label for="e-local">Seção / prateleira</label><input type="text" id="e-local" value="' + esc(l.local || '') + '"></div>' +
+      '<div class="form-field"><label for="e-prateleira">Prateleira (extra)</label><input type="text" id="e-prateleira" value="' + esc(l.prateleira || '') + '"></div>' +
+      '<div class="form-field"><label for="e-observacoes">Observações</label><textarea id="e-observacoes" rows="2">' + esc(l.observacoes || '') + '</textarea></div>' +
+      '<div id="msg-edit"></div>' +
+      '<div class="form-actions"><button class="btn" id="btn-conf-edit" onclick="window._confirmarEditar(\'' + esc(id) + '\')">Salvar alterações</button><button class="btn btn-secondary" onclick="window._fecharModal()">Cancelar</button></div>' +
+      '</div></div>';
+    setTimeout(function(){ document.getElementById('e-ambiente').value = l.ambiente || 'Escritório'; },50);
+  };
+  window._confirmarEditar = function(id) {
+    var btn = document.getElementById('btn-conf-edit'); btn.disabled = true; btn.textContent = 'Salvando...';
+    var dados = { token: state.token, id: id, ambiente: document.getElementById('e-ambiente').value, local: document.getElementById('e-local').value.trim(), prateleira: document.getElementById('e-prateleira').value.trim(), observacoes: document.getElementById('e-observacoes').value.trim() };
+    fetch(URL_EDITAR, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(dados)})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if (d.ok) { window._fecharModal(); carregarLivros(); }
+        else { document.getElementById('msg-edit').innerHTML = '<div class="error-msg">' + esc(d.erro) + '</div>'; btn.disabled = false; btn.textContent = 'Salvar alterações'; }
+      })
+      .catch(function(){ document.getElementById('msg-edit').innerHTML = '<div class="error-msg">Erro de conexão.</div>'; btn.disabled = false; btn.textContent = 'Salvar alterações'; });
   };
 
-  function mostrarMsg(id, texto, tipo) {
-    var el = document.getElementById(id);
-    el.innerHTML = '<div class="' + (tipo === 'error' ? 'error-msg' : 'success-msg') + '">' + texto + '</div>';
-    if (tipo !== 'error') {
-      setTimeout(function() { el.innerHTML = ''; }, 5000);
-    }
-  }
+  window._abrirExcluir = function(id) {
+    var l = buscarLivro(id); if (!l) return;
+    document.getElementById('modal-area').innerHTML =
+      '<div class="modal-overlay" onclick="if(event.target===this) window._fecharModal()"><div class="modal">' +
+      '<h2 style="color:#8a2a1d;">🗑️ Excluir livro</h2><div class="modal-ornament" style="background:#8a2a1d;"></div>' +
+      '<div class="warning-msg">⚠️ Esta ação é <strong>permanente</strong>. O livro vai sumir da biblioteca para sempre.</div>' +
+      '<div class="livro-resumo">' + esc(l.titulo) + (l.autor ? '<br><span style="font-size:15px;font-weight:400;color:#5a6478;">' + esc(l.autor) + '</span>' : '') + '</div>' +
+      '<div class="form-field"><label for="e-confirma">Para confirmar, digite a palavra <strong>EXCLUIR</strong> abaixo:</label><input type="text" id="e-confirma" placeholder="EXCLUIR"></div>' +
+      '<div id="msg-excl"></div>' +
+      '<div class="form-actions"><button class="btn btn-danger" id="btn-conf-excl" onclick="window._confirmarExcluir(\'' + esc(id) + '\')">🗑️ Excluir definitivamente</button><button class="btn btn-secondary" onclick="window._fecharModal()">Cancelar</button></div>' +
+      '</div></div>';
+    setTimeout(function(){ document.getElementById('e-confirma').focus(); },50);
+  };
+  window._confirmarExcluir = function(id) {
+    var c = document.getElementById('e-confirma').value.trim();
+    if (c !== 'EXCLUIR') { document.getElementById('msg-excl').innerHTML = '<div class="error-msg">Digite EXCLUIR (em maiúsculas) para confirmar.</div>'; return; }
+    var btn = document.getElementById('btn-conf-excl'); btn.disabled = true; btn.textContent = 'Excluindo...';
+    fetch(URL_EXCLUIR, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token: state.token, id: id})})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if (d.ok) { window._fecharModal(); carregarLivros(); }
+        else { document.getElementById('msg-excl').innerHTML = '<div class="error-msg">' + esc(d.erro) + '</div>'; btn.disabled = false; btn.textContent = '🗑️ Excluir definitivamente'; }
+      })
+      .catch(function(){ document.getElementById('msg-excl').innerHTML = '<div class="error-msg">Erro de conexão.</div>'; btn.disabled = false; btn.textContent = '🗑️ Excluir definitivamente'; });
+  };
+
+  window._verHistorico = function(id) {
+    var l = buscarLivro(id); if (!l) return;
+    var hist = (l.historico || '').split('|').map(function(s){return s.trim();}).filter(Boolean);
+    var conteudo = hist.length ? hist.map(function(h){return '<div class="item">' + esc(h) + '</div>';}).join('') : '<div class="item" style="color:#5a6478;font-style:italic;">Nenhum empréstimo registrado.</div>';
+    document.getElementById('modal-area').innerHTML =
+      '<div class="modal-overlay" onclick="if(event.target===this) window._fecharModal()"><div class="modal">' +
+      '<h2>📜 Histórico</h2><div class="modal-ornament"></div>' +
+      '<div class="livro-resumo">' + esc(l.titulo) + '</div>' +
+      '<div class="historico-list">' + conteudo + '</div>' +
+      '<div class="form-actions"><button class="btn" onclick="window._fecharModal()">Fechar</button></div>' +
+      '</div></div>';
+  };
 
   atualizarStatusLogin();
   carregarLivros();
